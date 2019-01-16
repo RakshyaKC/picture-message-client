@@ -22,3 +22,18 @@ export const uploadPic = acceptedFiles => {
     body: data
   })
 }
+
+export const uploadCamPic = (camPic) => {
+  // send acceptedFiles from dropzone to /pictures so pictures controller can CREATE a pic in database
+  const data = new FormData()
+  data.append('picture[image]', camPic)
+  // data === { picture: { image: AcceptedFileNumberOne  } }
+
+  return fetch(apiUrl + '/pictures', {
+    method: 'POST',
+    // headers: {
+    //   'Content-Type': 'application/json'
+    // },
+    body: data
+  })
+}
