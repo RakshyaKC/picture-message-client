@@ -31,9 +31,12 @@ export const uploadCamPic = (camPic) => {
 
   return fetch(apiUrl + '/pictures', {
     method: 'POST',
-    // headers: {
-    //   'Content-Type': 'application/json'
-    // },
     body: data
+  })
+}
+
+export const getUsers = () => {
+  return fetch(apiUrl + '/users', {
+    method: 'GET'
   })
 }

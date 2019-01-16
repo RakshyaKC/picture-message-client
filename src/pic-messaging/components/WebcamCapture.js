@@ -60,8 +60,8 @@ class WebcamCapture extends React.Component {
 
   render() {
     const videoConstraints = {
-      width: 4000,
-      height: 1400,
+      width: 500,
+      height: 500,
       facingMode: 'user'
     }
     console.log(this.state.image)
@@ -69,12 +69,12 @@ class WebcamCapture extends React.Component {
       <div>
         <Webcam
           audio={false}
-          height={700}
+          height={500}
           ref={this.setRef}
           screenshotFormat="image/jpeg"
-          width={700}
+          width={500}
           videoConstraints={videoConstraints}
-        />
+        /><br/>
         <button onClick={this.onCapture}>Take a pic!</button>
         <button onClick={this.onSend}>Send this pic!</button>
       </div>
