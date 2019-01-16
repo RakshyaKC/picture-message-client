@@ -7,7 +7,9 @@ class CreatePicMessage extends Component {
   onDrop = (acceptedFiles, rejectedFiles) => {
     console.log('Accepted:', acceptedFiles)
     uploadPic(acceptedFiles)
-    console.error('Rejected:', rejectedFiles)
+      .then(res => res.json())
+      .then(resJson => console.log(resJson.picture.image.image.url))
+    // console.error('Rejected:', rejectedFiles)
   }
 
   render() {
