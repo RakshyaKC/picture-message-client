@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Dropzone from 'react-dropzone'
 import { uploadPic } from '../api.js'
 import WebcamCapture from './WebcamCapture'
+import UserList from './UserList'
 
 class CreatePicMessage extends Component {
   onDrop = (acceptedFiles, rejectedFiles) => {
@@ -16,6 +17,7 @@ class CreatePicMessage extends Component {
     return (
       <React.Fragment>
         <WebcamCapture/>
+        <UserList/>
         <Dropzone onDrop={this.onDrop}>
           {/* built in things*/}
           {({getRootProps, getInputProps, isDragActive}) => {
