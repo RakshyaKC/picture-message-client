@@ -55,7 +55,7 @@ export const createMessage = (picture_id, receiver_id, user) => {
 }
 
 export const getMessage = (user) => {
-  console.log(user)
+  // console.log(user)
   const data = new FormData()
   data.append('message[receiver_id]', user.id)
   return fetch(apiUrl + '/messages', {
@@ -69,12 +69,13 @@ export const getMessage = (user) => {
 export const seenMessage = (receiver_id, user) => {
   const data = new FormData()
   data.append('message[receiver_id]', receiver_id)
-  return fetch(apiUrl + '/messages', {
+  return fetch(apiUrl + '/seen-message', {
     method: 'PATCH',
     headers: {
       'Authorization':`Token token=${user.token}`
     },
-    body: data
-    // seen: true
+    body: {
+      seen: true
+    }
   })
 }
