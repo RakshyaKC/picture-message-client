@@ -40,3 +40,16 @@ export const getUsers = () => {
     method: 'GET'
   })
 }
+
+export const createMessage = (picture_id, receiver_id, user) => {
+  const data = new FormData()
+  data.append('message[picture_id]', picture_id)
+  data.append('message[receiver_id]', receiver_id)
+  return fetch(apiUrl + '/messages', {
+    method: 'POST',
+    headers: {
+      'Authorization':`Token token=${user.token}`
+    },
+    body: data
+  })
+}

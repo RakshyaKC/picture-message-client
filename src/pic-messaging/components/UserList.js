@@ -15,6 +15,7 @@ class UserList extends Component {
     this.setState({
       user: event.target.value
     })
+    this.props.onSelect(event.target.value)
   }
 
   componentDidMount() {
