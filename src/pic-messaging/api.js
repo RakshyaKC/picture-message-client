@@ -53,3 +53,28 @@ export const createMessage = (picture_id, receiver_id, user) => {
     body: data
   })
 }
+
+export const getMessage = (user) => {
+  console.log(user)
+  const data = new FormData()
+  data.append('message[receiver_id]', user.id)
+  return fetch(apiUrl + '/messages', {
+    method: 'GET',
+    headers: {
+      'Authorization':`Token token=${user.token}`
+    }
+  })
+}
+
+export const seenMessage = (receiver_id, user) => {
+  const data = new FormData()
+  data.append('message[receiver_id]', receiver_id)
+  return fetch(apiUrl + '/messages', {
+    method: 'PATCH',
+    headers: {
+      'Authorization':`Token token=${user.token}`
+    },
+    body: data
+    // seen: true
+  })
+}

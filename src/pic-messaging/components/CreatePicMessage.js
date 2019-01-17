@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import Dropzone from 'react-dropzone'
-import { uploadPic } from '../api.js'
 import WebcamCapture from './WebcamCapture'
 import UserList from './UserList'
+import { uploadPic } from '../api.js'
 import { createMessage } from '../api.js'
 
 class CreatePicMessage extends Component {

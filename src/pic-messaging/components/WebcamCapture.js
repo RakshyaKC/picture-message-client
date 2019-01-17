@@ -14,13 +14,6 @@ class WebcamCapture extends React.Component {
     this.webcam = webcam
   }
 
-  // onCapture = () => {
-  //   const imageSrc = this.webcam.getScreenshot()
-  //   // console.log('onCapture', imageSrc)
-  //   // const binaryImg = convertToBinary(imageSrc)
-  //   // uploadPic([binaryImg])
-  // }
-
   onCapture = () => {
     const camPic = this.dataURLtoBlob(this.webcam.getScreenshot())
     console.log('onCapture camPic:', camPic)
