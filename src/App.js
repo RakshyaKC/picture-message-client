@@ -9,6 +9,8 @@ import SignIn from './auth/components/SignIn'
 import SignOut from './auth/components/SignOut'
 import ChangePassword from './auth/components/ChangePassword'
 import CreatePicMessage from './pic-messaging/components/CreatePicMessage'
+import Inbox from './pic-messaging/components/Inbox'
+
 
 class App extends Component {
   constructor () {
@@ -57,6 +59,9 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} path='/create-pic-message' render={() => (
             <CreatePicMessage user={user}/>
+          )} />
+          <AuthenticatedRoute user={user} path='/inbox' render={() => (
+            <Inbox user={user}/>
           )} />
         </main>
       </React.Fragment>
