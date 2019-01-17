@@ -28,8 +28,9 @@ class UserList extends Component {
   render() {
     return (
       <div>
-        <h5>User list dropdown</h5>
+        <h6>Select a friend</h6>
         <select value={this.state.user} onChange={this.onChange}>
+          <option></option>
           {this.state.users.map((user) =>
             <option key={user.id} value={user.id}>{user.email}</option>)}
         </select>

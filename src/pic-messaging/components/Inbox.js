@@ -36,7 +36,10 @@ class Inbox extends Component {
         <ul>
           <li>
             {this.state.messages.map((message) =>
-              <button key={message.id} value={this.state.message} onClick={this.onShowMessage}>{message.sender.email}</button>
+              <div key={message.id}>
+                <button value={this.state.message} onClick={this.onShowMessage}>{message.sender.email}</button>
+                <p>{message.picture.image.image.url}</p>
+              </div>
             )}
           </li>
         </ul>
