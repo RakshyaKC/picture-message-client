@@ -21,9 +21,14 @@ class WebcamCapture extends React.Component {
   //   // uploadPic([binaryImg])
   // }
 
-  onCapture = () => this.setState({
-    image: this.dataURLtoBlob(this.webcam.getScreenshot())
-  })
+  onCapture = () => {
+    const camPic = this.dataURLtoBlob(this.webcam.getScreenshot())
+    console.log('onCapture camPic:', camPic)
+
+    uploadCamPic(camPic)
+      .then(res => res.json())
+      .then(resJson => this.props.onClick(resJson.picture.id))
+  }
 
   dataURLtoBlob = (dataURI) => {
   // convert base64 to raw binary data held in a string
@@ -49,34 +54,23 @@ class WebcamCapture extends React.Component {
     return blob
   }
 
-  onSend = () => {
-    const camPic = this.state.image
-    console.log('onSend camPic:', camPic)
-    uploadCamPic(camPic)
-      .then(res => console.log(res))
-      // .then(res => res.json())
-      // .then(resJson => console.log(resJson))
-  }
-
   render() {
     const videoConstraints = {
-      width: 4000,
-      height: 1400,
+      width: 500,
+      height: 500,
       facingMode: 'user'
     }
-    console.log(this.state.image)
     return (
       <div>
         <Webcam
           audio={false}
-          height={700}
+          height={500}
           ref={this.setRef}
           screenshotFormat="image/jpeg"
-          width={700}
+          width={500}
           videoConstraints={videoConstraints}
-        />
+        /><br/>
         <button onClick={this.onCapture}>Take a pic!</button>
-        <button onClick={this.onSend}>Send this pic!</button>
       </div>
     )
   }

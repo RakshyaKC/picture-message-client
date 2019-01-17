@@ -56,7 +56,7 @@ class App extends Component {
             <ChangePassword flash={this.flash} user={user} />
           )} />
           <AuthenticatedRoute user={user} path='/create-pic-message' render={() => (
-            <CreatePicMessage />
+            <CreatePicMessage user={user}/>
           )} />
         </main>
       </React.Fragment>

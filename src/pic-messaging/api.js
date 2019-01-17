@@ -31,9 +31,25 @@ export const uploadCamPic = (camPic) => {
 
   return fetch(apiUrl + '/pictures', {
     method: 'POST',
-    // headers: {
-    //   'Content-Type': 'application/json'
-    // },
+    body: data
+  })
+}
+
+export const getUsers = () => {
+  return fetch(apiUrl + '/users', {
+    method: 'GET'
+  })
+}
+
+export const createMessage = (picture_id, receiver_id, user) => {
+  const data = new FormData()
+  data.append('message[picture_id]', picture_id)
+  data.append('message[receiver_id]', receiver_id)
+  return fetch(apiUrl + '/messages', {
+    method: 'POST',
+    headers: {
+      'Authorization':`Token token=${user.token}`
+    },
     body: data
   })
 }
