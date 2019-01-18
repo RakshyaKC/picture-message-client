@@ -3,19 +3,12 @@ import WebcamCapture from './WebcamCapture'
 import UserList from './UserList'
 import { uploadPic } from '../api.js'
 import { createMessage } from '../api.js'
+import notifications from '../notifications'
 
 class CreatePicMessage extends Component {
   state = {
     receiver_id: '',
     picture_id: ''
-  }
-
-  onDrop = (acceptedFiles, rejectedFiles) => {
-    console.log('Accepted:', acceptedFiles)
-    uploadPic(acceptedFiles)
-      .then(res => res.json())
-      .then(resJson => console.log(resJson.picture.image.image.url))
-    // console.error('Rejected:', rejectedFiles)
   }
 
   setReceiverId = (id) => {
@@ -34,6 +27,7 @@ class CreatePicMessage extends Component {
 
   sendMessage = () => {
     createMessage(this.state.picture_id, this.state.receiver_id, this.props.user)
+    this.props.flash(notifications.createMessageSuccess, 'flash-success')
   }
 
   render() {

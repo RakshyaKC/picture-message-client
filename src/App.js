@@ -32,7 +32,7 @@ class App extends Component {
     clearTimeout(this.messageTimeout)
 
     this.messageTimeout = setTimeout(() => this.setState({flashMessage: null
-    }), 2000)
+    }), 1000)
   }
 
   render () {
@@ -57,7 +57,7 @@ class App extends Component {
             <ChangePassword flash={this.flash} user={user} />
           )} />
           <AuthenticatedRoute user={user} path='/create-pic-message' render={() => (
-            <CreatePicMessage user={user}/>
+            <CreatePicMessage user={user} flash={this.flash}/>
           )} />
           <AuthenticatedRoute user={user} path='/inbox' render={() => (
             <Inbox user={user}/>
