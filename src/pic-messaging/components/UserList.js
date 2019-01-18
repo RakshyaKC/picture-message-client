@@ -27,7 +27,7 @@ class UserList extends Component {
 
   render() {
     return (
-      <div>
+      <div className="buttons">
         <h6>Select a friend</h6>
         <select value={this.state.user} onChange={this.onChange}>
           <option></option>

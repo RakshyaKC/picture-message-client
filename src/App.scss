@@ -1,7 +1,7 @@
-$success: #c7f282;
+$success: #7a85d4;
 $warning: #f1e681;
 $error: #f08181;
-$charcoal: #ccc;
+$charcoal: #6f6e6e;
 
 .flash-success,
 .flash-warning,
@@ -37,7 +37,10 @@ $charcoal: #ccc;
   max-width: 600px;
 
   h3,
-  input {
+  h6,
+  input,
+  label {
+    color: $charcoal;
     margin-bottom: 5%;
   }
 
@@ -45,4 +48,10 @@ $charcoal: #ccc;
     align-self: flex-end;
     max-width: 200px;
   }
+}
+
+.buttons,
+.webcam {
+  margin: auto;
+  text-align: center;
 }
