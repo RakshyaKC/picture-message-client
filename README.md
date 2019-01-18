@@ -3,86 +3,65 @@
 
 A front-end repo for sending a picgram using the [Rails API Template](https://git.generalassemb.ly/ga-wdi-boston/rails-api-template)
 
-## Installation
+# Technology used
+React
+NPM packages
+WebcamCapture
+Github
 
-1. [Download](../../archive/master.zip) this template.
-1. Unzip and rename the template directory (`unzip ~/Downloads/ember-auth-template-master.zip`).
-1. Move into the new project and `git init`.
-1. Empty [`README.md`](README.md) and fill with your own content.
-1. Replace `ga-wdi-boston.react-auth-template` in `package.json` with your
-   projects name.
-1. Replace the `"homepage"` field in `package.json` with your (public) Github
-   account name and repository name.
-1. Install dependencies with `npm install`.
-1. `git add` and `git commit` your changes.
-1. Run the development server with `npm start`.
+# To use webcam (branch: takepic)
+* Downloaded React package - WebcamCapture.js
+* Create a button for ‘sending pic’
+* Create a function to turn base64 image into blob
+* Create an api call to send blob to backend
+* In backend image_uploader.rb, remove extension white list as blob isn't saved as image file
+* To create folder hierarchy in s3, uncomment below in image_uploader.rb
+def store_dir
+    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+end
 
-## About
+# To get list of all users
+* Create User List component, render it under webcam and buttons
+* On “mount” in User List component, call “getUsers” api function
+* This function will GET the /users index
+* Then save these users into “this.state”
+* Show dropdown with all users by looping over “this.state”
 
-This template is derived from GA Boston's [react-template](https://git.generalassemb.ly/ga-wdi-boston/react-template).
-Most of the development dependencies, such as linters, SCSS compiler, Webpack
-config, NPM scripts, etc in this repo come from there.
 
-It includes all the components and routes needed to sign up, sign in, change
-passwords, and sign out of an API built with either template linked above, with
-no need for modification.
+# For image upload in React using FormData()
+(https://medium.com/@rose_shumei_huang/carrierwave-in-a-react-app-247ff7d7aff3)
+* Created pic-messaging/components/CreatePicMessage.js
+* Imported above component into App.js
+* Add authenticated route to 2 in App.js
+* Adding link to component in Header.js
+* In Api.js, send webcam image file via fetch method.
+* Using FormData, and nesting under “image” key
+* In the backend it will hit routes.rb, then picture controller, then picture model, then image uploader, which saves the file in AWS s3
 
-**NOTE**: You should customize the included components to suit you app! They're
-provided as a guide and a bare minimum of functionality and style. Consider
-changing the provided SCSS styles, modifying the auth code, improving the flash
-messages, etc.
+# Send a message
+* When a user is selected, and a pic has been taken, “Send Message” button needs to send the * picture_id, sender_id, and receiver_id to POST /messages
+* Hoisting WebamCapture(picture_id) and user list(receiver_id) to CreatePicMessage(sender_id)
+* User is passed from app.js to createPicMessage component
+* Api call is made with header and token for authentication
 
-## Structure
+# Receive a message
+* Make an Inbox component and display on header as Link
+* Add authenticated routes and pass user to Inbox inside App.js
+* On component mount,
+* Call getMessages api function
+* This function will GET the /messages using receiver_id
+* setInterval to run every second
+* Send seenMessage api function
+* To update seen:null to seen:true
+* In render,
+    * If message.seen===null, bold
+    * if message.seen===true, not bold
+* Render a list of messages to choose from
+* onClick function makes api call to update message from seen: null to seen: true
+  * Style changes to make the updates apparent on front end
 
-Currently, the top-level `App` component stores the currently authenticated
-user in state, as well as data related to the flash messages. `App` renders the
-`Header` component, and a list of routes, each of which render a component from
-`src/auth/components`. The `auth` directory has two non-component files, `api`
-and `messages`, which contain all the needed `fetch` calls, and messages to
-display when API calls succeed or fail, respectively.
 
-We recommend following this pattern in your app. For instance, if you are making
-an app that keeps track of books, you might want a `books` directory next to
-`auth`, which contains its own `api` and `messages` files, as well as a
-`components` directory.
-
-## Features
-
-### `<AuthenticatedRoute />`
-
-This template contains a handy component for creating routes that require a
-user to be authenticated before visiting. This component lives in
-`src/auth/components/AuthenticatedRoute.js` and is already required in `App`.
-It's a thin wrapper around React Router's `<Route />` component. The only
-difference is that it expects a prop called `user`, and if that prop is falsy,
-it will render a `<Redirect />` that takes the user to `/`. **If you want to use
-it, you must pass it the currently authenticated as a prop!**
-
-It supports both the `component=` and `render=` attributes, but like `<Route />`
-it will not forward props to the component if you use `component=`.
-
-### Flash Messages
-
-The `App` component has a rudimentary version of flash messages. To use it,
-pass `this.flash` into a subcomponent of `App` as a prop and call it from there.
-It expects two arguments: a message to display, and a message type, which is one
-of `'flash-success'`, `'flash-warning'`, and `'flash-error'` which make the
-message green, yellow, and red, respectively. You must pass one of these types.
-You can add more types by adding more CSS rules in `App.scss`.
-
-In the auth components, flash messages are used in conjunction with the
- `auth/messages` file to select from a list of predefined success/failure
- messages. To undertand how to do this, look at the definition of `flash` in
- `App.js`, the `signUp` method in `auth/components/SignUp.js`, and the
- `auth/messages.js` file.
-
- To change the duration of the message, replace `2000` with a value of your
- choice (in milliseconds) in the `flash` method definition in `App.js`.
-
- ### `src/apiConfig.js`
-
- Just like in
-[browser-template](https://git.generalassemb.ly/ga-wdi-boston/browser-template),
-this file will determine whether you're in a production or development
-environment and choose an API URL accordingly. Don't forget to replace the
-`production` URL with your deployed API's URL.
+# Deployment
+https://git.generalassemb.ly/ga-wdi-boston/react-template#deployment
+$npm run build
+$npm run deploy
