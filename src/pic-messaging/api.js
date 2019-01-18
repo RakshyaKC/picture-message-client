@@ -66,16 +66,23 @@ export const getMessage = (user) => {
   })
 }
 
-export const seenMessage = (receiver_id, user) => {
+export const seenMessage = (message_id, user) => {
   const data = new FormData()
-  data.append('message[receiver_id]', receiver_id)
-  return fetch(apiUrl + '/seen-message', {
+  data.append('message[seen]', true)
+  return fetch(apiUrl + `/messages/${message_id}`, {
     method: 'PATCH',
     headers: {
       'Authorization':`Token token=${user.token}`
     },
-    body: {
-      seen: true
+    body: data
+  })
+}
+
+export const deleteMessage = (message_id, user) => {
+  return fetch(apiUrl + `/messages/${message_id}`, {
+    method: 'DELETE',
+    headers: {
+      'Authorization':`Token token=${user.token}`
     }
   })
 }

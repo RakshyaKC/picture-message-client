@@ -11,7 +11,6 @@ import ChangePassword from './auth/components/ChangePassword'
 import CreatePicMessage from './pic-messaging/components/CreatePicMessage'
 import Inbox from './pic-messaging/components/Inbox'
 
-
 class App extends Component {
   constructor () {
     super()

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Message from './Message'
 import { getMessage } from '../api.js'
 // import { seenMessage } from '../api.js'
 
@@ -10,48 +11,27 @@ class Inbox extends Component {
       message: []
     }
   }
-
-
-  onShowMessage = event => {
-    console.log('In onShowMessage ', this.state.messages)
-    console.log(event)
-    // this.setState({
-    //   message: event.target.value
-    // })
-  }
-
-  componentDidMount() {
-    console.log('in inbox component')
+  // wrapping get message so we can attach set interval of 1 sec on the api call
+  wrapGetMessage = () => {
     getMessage(this.props.user)
       .then(res => res.json())
       .then(resJson => this.setState({
         messages: resJson.messages
       }))
   }
-  // setInterval(this.getMessage, 1000)
+
+  componentDidMount() {
+    setInterval(this.wrapGetMessage, 1000)
+  }
 
   render() {
     return (
-      <div>
-        <ul>
-          <li>
-            {this.state.messages.map((message) =>
-              <div key={message.id}>
-                <button value={this.state.message} onClick={this.onShowMessage}>{message.sender.email}</button>
-                <p></p>
-                <img src={message.picture.image.image.url}/>
-              </div>
-            )}
-          </li>
-        </ul>
+      <div className="message-list">
+        {this.state.messages.map((message) =>
+          <Message key={message.id} message={message} user={this.props.user}/>
+        )}
       </div>
     )
   }
-
-  // <li>
-  //   {this.state.messages.map((message) =>
-  //     <image key={message.picture.id} value={this.state.message.picture}>{message.picture.url}<br/></image>
-  //   )}
-  // </li>
 }
 export default Inbox
