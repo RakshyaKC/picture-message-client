@@ -16,7 +16,7 @@ class WebcamCapture extends React.Component {
 
   onCapture = () => {
     const camPic = this.dataURLtoBlob(this.webcam.getScreenshot())
-    console.log('onCapture camPic:', camPic)
+    // console.log('onCapture camPic:', camPic)
 
     uploadCamPic(camPic)
       .then(res => res.json())

@@ -1,15 +1,28 @@
 
-# react-auth-template
-
-A front-end repo for sending a picgram using the [Rails API Template](https://git.generalassemb.ly/ga-wdi-boston/rails-api-template)
+A React front-end app for sending a picgram using Rails backend. The backend repo can be found at https://github.com/RakshyaKC/picture-message. The app can be found at https://rakshyakc.github.io/picture-message-client/#/
 
 # Technology used
-React
-NPM packages
-WebcamCapture
-Github
+* React
+* NPM packages
+* WebcamCapture
+* Github
 
-# To use webcam (branch: takepic)
+# User stories
+* Authenticate (sign up, in, out, change password)
+* Create a picture / (take or upload a picture) --CREATE
+* Select user to send picture to
+* Send picture
+* Receive notification for new pic message
+* Check inbox
+* See who new message is from
+* Receive a picture --READ
+* User can see if the pic was seen or unseen --UPDATE
+* User can delete picture from their inbox --DELETE
+
+# Wireframe
+https://docs.google.com/drawings/d/196TQ3u8dXndVY7vDZtWoil_a36Zy3wwe9IOrTJp-7ds/edit?usp=sharing
+
+# To use webcam
 * Downloaded React package - WebcamCapture.js
 * Create a button for ‘sending pic’
 * Create a function to turn base64 image into blob
@@ -60,6 +73,14 @@ end
 * onClick function makes api call to update message from seen: null to seen: true
   * Style changes to make the updates apparent on front end
 
+# Future issues to be solved
+* Stylistic changes
+* Use websocket or action cable instead of making api calls frequently.
+* Ensure threading of conversations
+* Inbox link will be highlighted if new messages are received
+* Add profile pictures for users
+* Enable users to experiment with epsilon photography using just their webcam
+* Friend particular user instead of listing all users on the app
 
 # Deployment
 https://git.generalassemb.ly/ga-wdi-boston/react-template#deployment
