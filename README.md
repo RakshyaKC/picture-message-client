@@ -22,6 +22,11 @@ A React front-end app for sending a picgram using Rails backend. The backend rep
 # Wireframe
 https://docs.google.com/drawings/d/196TQ3u8dXndVY7vDZtWoil_a36Zy3wwe9IOrTJp-7ds/edit?usp=sharing
 
+# App screenshot
+https://drive.google.com/file/d/1Hu0zLSctX-sQh29OGbkjWMo5-TywLiNZ/view?usp=sharing
+https://drive.google.com/file/d/1biXDhoARQjd6fBb2e18O32q2YU2ydooJ/view?usp=sharing
+
+
 # To use webcam
 * Downloaded React package - WebcamCapture.js
 * Create a button for ‘sending pic’
