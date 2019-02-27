@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import WebcamCapture from './WebcamCapture'
+import Webcam from './Webcam'
 import UserList from './UserList'
 import { uploadPic } from '../api.js'
 import { createMessage } from '../api.js'
@@ -26,6 +26,10 @@ class CreatePicMessage extends Component {
   }
 
   sendMessage = () => {
+    const canvas = document.getElementById('canvas')
+    const context = canvas.getContext('2d')
+    context.clearRect(0, 0, canvas.width, canvas.height)
+    // to clear canvas once pic is sent
     createMessage(this.state.picture_id, this.state.receiver_id, this.props.user)
     this.props.flash(notifications.createMessageSuccess, 'flash-success')
   }
@@ -33,7 +37,7 @@ class CreatePicMessage extends Component {
   render() {
     return (
       <div className="buttons">
-        <WebcamCapture onClick={this.setPictureId}/>
+        <Webcam onClick={this.setPictureId}/>
         <UserList onSelect={this.setReceiverId}/>
         <button onClick={this.sendMessage}>Send image</button>
       </div>

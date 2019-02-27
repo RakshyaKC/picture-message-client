@@ -50,7 +50,16 @@ $charcoal: #6f6e6e;
   }
 }
 
-.buttons,
+.buttons {
+  display: flex;
+  margin: auto;
+  text-align: center;
+}
+
+.container {
+  // height: 100vh;
+}
+
 .webcam {
   margin: auto;
   text-align: center;
